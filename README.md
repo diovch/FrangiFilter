@@ -12,3 +12,6 @@ The main steps of app execution:
 - solving the eigen problem
 - computing vesselness function (see Frangi paper), i.e. a probability of that central voxel corresponds to a vessel
 - writing an image with vesselness
+
+Links: 
+- [original paper](https://link.springer.com/chapter/10.1007/bfb0056195)
