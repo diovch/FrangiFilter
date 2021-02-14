@@ -3,14 +3,9 @@
    domain Java Matrix library JAMA. */
 
 #include <math.h>
+#include "eig3.h"
 
-#ifdef MAX
-#undef MAX
-#endif
 
-#define MAX(a, b) ((a)>(b)?(a):(b))
-
-#define n 3
 
 static double hypot2(double x, double y) {
   return sqrt(x*x+y*y);
