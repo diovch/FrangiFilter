@@ -161,11 +161,10 @@ int main(int argc, char * argv[])
 				//vesselness
 				double ves_fun = (lambda2 > 0 || lambda3 > 0) ?
 					0 : (1 - exp(-Ra * Ra / 0.5))*exp(-Rb * Rb / 0.5)*(1 - exp(-S * S / const_c / const_c));
-				// заполнение центрального вокселя результирующего файла
+				
 
 				auto centr_res_voxel = result_pointer + (i + j * width + k * width*height);
 				*centr_res_voxel = (short)(ves_fun * 1024.0f);
-				//*centr_res_voxel = i;
 			}
 		}
 	}
