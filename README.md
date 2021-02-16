@@ -1,5 +1,5 @@
 # FrangiFilter
-In this repository you can find an implementation of Frangi method for computing vessel volume from 3D CT DICOM image.
+In this repository you can find an implementation of Frangi method for computing a probability of vessel appearance from 3D CT DICOM image.
 
 The main steps of app execution:
 - reading 3D CT image in DICOM format by ITK (Insight ToolKit) librar
