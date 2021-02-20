@@ -13,5 +13,10 @@ The main steps of app execution:
 - computing vesselness function (see Frangi paper), i.e. a probability of that central voxel corresponds to a vessel
 - writing an image with vesselness
 
+Here is an image with vesselness. You may notice that hear is also detected.
+![result image1](https://github.com/diovch/FrangiFilter/blob/master/output1.jpg)
+
+![result image2](https://github.com/diovch/FrangiFilter/blob/master/output2.jpg)
+
 Links: 
 - [original paper](https://link.springer.com/chapter/10.1007/bfb0056195)
