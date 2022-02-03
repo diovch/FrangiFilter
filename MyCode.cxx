@@ -1,4 +1,3 @@
- 
 #include "itkImageFileReader.h"
 #include "itkImageFileWriter.h"
 #include "itkRescaleIntensityImageFilter.h"
@@ -7,15 +6,13 @@
 #include "itkConstNeighborhoodIterator.h"
 #include "eig3.h"
 
-#include <Windows.h>
+#include <math.h>
 
 using namespace std;
-#include <math.h>
 
 void SwapVectors(double V[n][n], int left, int right);
 void SwapValues(double d[n], int left, int right);
 void AbsoluteSort(double d[n], double V[n][n]);
-
 
 int main(int argc, char * argv[])
 {
@@ -38,8 +35,6 @@ int main(int argc, char * argv[])
 
 	using ReaderType = itk::ImageFileReader<ImageType>;
 	ReaderType::Pointer reader = ReaderType::New();
-	char curDir[256];
-	GetCurrentDirectory(256, curDir);
 
 	reader->SetFileName(inputFileName);
 	reader->Update();
@@ -79,10 +74,12 @@ int main(int argc, char * argv[])
 	start[0] = 0; // first index on X
 	start[1] = 0; // first index on Y
 	start[2] = 0; // first index on Z
+	
 	ImageType::SizeType res_size;
 	res_size[0] = width; // size along X
 	res_size[1] = height; // size along Y
 	res_size[2] = depth; // size along Z
+	
 	ImageType::RegionType res_region;
 	res_region.SetSize(size);
 	res_region.SetIndex(start);
@@ -96,7 +93,7 @@ int main(int argc, char * argv[])
 		for (size_t i = 1; i < size_t(width - 1); ++i) {
 			for (size_t j = 1; j < size_t(height - 1); ++j) {
 			
-				// backward, forward, central
+				// _.(b/f/c)_     backward, forward, central
 
 				// voxels in zb slice 
 				auto xb_yc_zb = pointer + ((i - 1) + j * width + (k - 1) * width*height);
@@ -133,7 +130,7 @@ int main(int argc, char * argv[])
 				auto df_yz = (*xc_yf_zf - *xc_yb_zf - *xc_yf_zb + *xc_yb_zb) / 4 / z_sc / y_sc;
 				auto df_xz = (*xf_yc_zf - *xf_yc_zb - *xb_yc_zf + *xb_yc_zb) / 4 / z_sc / x_sc;
 
-				double H[3][3]; // Hessian
+				double H[3][3]; // Hessian matrix
 				H[0][0] = df_xx; H[1][1] = df_yy; H[2][2] = df_zz;
 				H[0][1] = H[1][0] = df_yx;
 				H[0][2] = H[2][0] = df_xz;
